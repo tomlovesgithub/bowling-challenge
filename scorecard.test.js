@@ -1,12 +1,21 @@
 const Scorecard = require('./scorecard');
 
-// New scorecard has ten rounds
+// Gutter Game Feature Test
 
-// beforeEach(() => {
-//   var scorecard = new Scorecard();
-// });
-
-test('New scorecard has ten rounds', () => {
+test('GutterGame Total score is 0', () => {
   var scorecard = new Scorecard();
-  expect((scorecard.frames)).toBe(10);
+
+  scorecard.bowl(0,0)
+  scorecard.bowl(0,0);
+  scorecard.bowl(0,0);
+  scorecard.bowl(0,0);
+  scorecard.bowl(0,0);
+  scorecard.bowl(0,0);
+  scorecard.bowl(0,0);
+  scorecard.bowl(0,0);
+  scorecard.bowl(0,0);
+  scorecard.bowl(0,0);
+  scorecard.bowl(0,0);
+
+  expect((scorecard.Total).toBe(0));
 });
