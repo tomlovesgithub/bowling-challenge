@@ -1,13 +1,49 @@
 class Scorecard {
 
   constructor() {
-    this.frames = 10;
-    this.total = 0;
+    this.frames = []
+    this.rollIndex = 0
+    this.frameIndex = 0
+    this.round = []
+    this.total;
   }
 
-  frame(roll1,roll2) {
-    this.total =+ (roll1 + roll2)
-    this.frames -= 1 
+  roll(pins){
+    if (pins == 10) {
+      this.increaseFrame()
+    }
+    this.round.push(pins)
+    this.checkFrameState()
+  }
+
+  makeTotal() {
+    this.total = this.frames.flat().reduce(function(a, b) {
+      return a + b;
+    }, 0)
+  }
+
+  increaseFrame() {
+    this.frameIndex += 1
+    this.makeTotal()
+  }
+
+  increaseRollIndex() {
+    this.rollIndex += 1
+  }
+
+  checkFrameState() {
+    if (this.rollIndex < 1) {
+      this.increaseRollIndex()
+    } else {
+      this.rollIndex = 0
+      this.resetRound()
+    }
+  }
+
+  resetRound() {
+    this.frames.push(this.round)
+    this.round = []
+    this.increaseFrame()
   }
 
 }
